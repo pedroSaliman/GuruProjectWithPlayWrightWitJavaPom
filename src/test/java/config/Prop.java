@@ -1,5 +1,7 @@
 package config;
 
+import org.example.Base;
+import org.example.EditCustomer;
 import org.example.LoginTest;
 
 import java.io.FileInputStream;
@@ -17,10 +19,14 @@ public class Prop {
         String URL=prop.getProperty("url");
         String theuserid= prop.getProperty("userid");
         String theuserpass= prop.getProperty("userpass");
-        LoginTest.browserName=browser;
-        LoginTest.url=URL;
+        String theuseridedit= prop.getProperty("userid");
+        String theuserpassedit= prop.getProperty("userpass");
+        Base.browserName=browser;
+        Base.url=URL;
         LoginTest.userid=theuserid;
         LoginTest.userPass=theuserpass;
+        EditCustomer.useridEdit=theuseridedit;
+        EditCustomer.userPassEdit=theuserpassedit;
 
 
 

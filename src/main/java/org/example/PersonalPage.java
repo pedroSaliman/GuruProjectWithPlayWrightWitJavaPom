@@ -19,5 +19,10 @@ public class PersonalPage {
         act.click("a[href='addcustomerpage.php']");
         return new Addcustomer(page);
     }
+public EditPage editClick(){
+        act=new Action(page);
+        act.click("a[href='EditCustomer.php']");
+        return new EditPage(page);
 
+}
 }

@@ -12,46 +12,22 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.Properties;
 
-public class LoginTest {
+public class LoginTest extends Base {
+    EditPage edit;
     Playwright play;
     Browser browser;
     Page page;
     Login log;
     PersonalPage person;
     Addcustomer cust;
-  public static String browserName = null;
- public    static String url = null;
+
  public  static  String userid=null;
     public  static  String userPass=null;
 
 
 
 
-    @BeforeTest
-    void setup() throws IOException {
-        Prop.proper();
-        play = Playwright.create();
-        switch (browserName){
-            case "firefox":
-                browser = play.firefox().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
-                    break;
-            case "chromium":
-                browser = play.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
-                break;
-            case "safari":
-                browser = play.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
-                break;
-            default:
-                System.out.println("good");
-                break;
 
-        }
-    page=browser.newPage();
-    page.navigate(url);
-
-
-
-    }
     @Test
     void loginInfo() throws IOException {
      log=new Login(page);
@@ -71,4 +47,12 @@ public class LoginTest {
         cust=new Addcustomer(page);
         cust.newCustomer("mansoura","mohamed","egypt","egypt","123456","011114447411","alrman@gmail.com","2521997");
     }
+    @Test(dependsOnMethods = {"addcustomer"})
+    void edit(){
+        edit=new EditPage(page);
+        person=new PersonalPage(page);
+        person.editClick();
+        edit.Edit("34555");
+    }
+
 }
